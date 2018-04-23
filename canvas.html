@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Canvas</title>
+    </head>
+    <body>
+        <canvas id="canvas" width="1000" height="1000"></canvas>
+        <script>
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            //for (var i = 0; i < 8; +i++) {
+            //    ctx.fillRect(i * 10, i * 10, 10, 10);
+            //}
+            ctx.fillStyle = "Red";//цвет прямоугольника
+            ctx.fillRect(50, 50, 50, 50);//голова (x,y координаты, ширина, высота)
+            ctx.fillRect(70, 100, 10, 20);//шея
+            ctx.fillRect(40, 120, 70, 70);//туловище
+            ctx.fillRect(20, 120, 20, 10);//правая рука
+            ctx.fillRect(110, 120, 20, 10);//левая рука
+            ctx.fillRect(40, 190, 10, 20);//правая нога
+            ctx.fillRect(100, 190, 10, 20);//левая нога
+            ctx.fillStyle = "Aqua";//три прямоугольника
+            ctx.fillRect(0, 220, 50, 100);
+            ctx.fillStyle = "GreenYellow";
+            ctx.fillRect(50, 220, 50, 100);
+            ctx.fillStyle = "Darkorange";
+            ctx.fillRect(100, 220, 50, 100);
+            ctx.strokeStyle = "Green";//цвет контура прямоугольника
+            ctx.lineWidth = 4;//ширина контура прямоугольника
+            ctx.strokeRect(25, 10, 100, 20);//контур прямоугольника
+            ctx.strokeStyle = "Fuchsia";//цвет крестика
+            ctx.lineWidth = 4;
+            //ctx.beginPath();//крестик
+            //ctx.moveTo(200, 0);
+            //ctx.lineTo(250, 50);
+            //ctx.moveTo(250, 0);
+            //ctx.lineTo(200, 50);
+            //ctx.stroke();
+            function drawLine(a, b, c, d) {
+                ctx.moveTo(a, b);
+                ctx.lineTo(c, d);
+                ctx.strokeStyle = "Fuchsia";
+                return ctx.stroke();
+            }
+            drawLine(200, 0, 250, 50);
+            drawLine(250, 0, 200, 50);
+            ctx.strokeStyle = "Fuchsia";
+            ctx.lineWidth = 4;
+            ctx.strokeRect(215, 70, 20, 20);//голова
+            drawLine(225, 90, 225, 130);//шея и туловище
+            drawLine(225, 110, 210, 100);//правая рука
+            drawLine(225, 110, 240, 100);//левая рука
+            drawLine(225, 130, 210, 150);//правая нога
+            drawLine(225, 130, 240, 150);//левая нога
+        </script>
+    </body>
+</html>
