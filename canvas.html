@@ -100,42 +100,43 @@
             ctx.strokeStyle = "Purple";
             circle(350, 150, 60);
 
-             var circle = function(x, y, radius, fillCircle) { //Функция для рисования окружностей
+             var circle = function(x, y, radius, fillCircle, color) { //Функция для рисования окружностей
                 ctx.beginPath();// Создаем путь
                 ctx.arc(x, y, radius, 0, Math.PI * 2, false);
                 if (fillCircle) {
-                    ctx.fillStyle = "Black";
+                    ctx.fillStyle = color;
                     ctx.fill();
                 }
                 else {
+                    ctx.strokeStyle = color;
                     ctx.stroke();
                 }
             };
           
             ctx.lineWidth = 4; // голова снеговика
             ctx.strokeStyle = "Black";
-            circle(500, 50, 30, false);
+            circle(500, 50, 30, false, "Black");
             ctx.lineWidth = 4; // туловище снеговика
             ctx.strokeStyle = "Black";
-            circle(500, 120, 40, false);
+            circle(500, 120, 40, false, "Black");
             ctx.lineWidth = 4; // правый глаз
             ctx.strokeStyle = "Black";
-            circle(490, 45, 5, true);
+            circle(490, 45, 5, true, "Black");
             ctx.lineWidth = 4; // левый глаз
             ctx.strokeStyle = "Black";
-            circle(510, 45, 5, true);
-            ctx.lineWidth = 4; // yjc
+            circle(510, 45, 5, true, "Black");
+            ctx.lineWidth = 4; // нос
             ctx.strokeStyle = "Black";
-            circle(500,55, 5, true);
+            circle(500,55, 5, true, "Orange");
             ctx.lineWidth = 4; // пуговицы
             ctx.strokeStyle = "Black";
-            circle(500,100, 5, true);
+            circle(500,100, 5, true, "Black");
             ctx.lineWidth = 4;
             ctx.strokeStyle = "Black";
-            circle(500,120, 5, true);
+            circle(500,120, 5, true, "Black");
             ctx.lineWidth = 4;
             ctx.strokeStyle = "Black";
-            circle(500,140, 5, true);
+            circle(500,140, 5, true, "Black");
         </script>
     </body>
 </html>
