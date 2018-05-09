@@ -8,12 +8,12 @@
         <canvas id="canvas" width="1000" height="1000"></canvas>
         <script>
             var canvas = document.getElementById("canvas");
-            var ctx = canvas.getContext("2d");
+            var ctx = canvas.getContext("2d");// Получили контекст рисования (JS-объект,обладающий методами и свойствами)
             //for (var i = 0; i < 8; i++) {
-            //    ctx.fillRect(i * 10, i * 10, 10, 10);
+            //    ctx.fillRect(i * 10, i * 10, 10, 10); квадрат
             //}
             ctx.fillStyle = "Red";//цвет прямоугольника
-            ctx.fillRect(50, 50, 50, 50);//голова (x,y-координаты, ширина, высота)
+            ctx.fillRect(50, 50, 50, 50);//прямоугольник-голова (x,y-координаты, ширина, высота)
             ctx.fillRect(70, 100, 10, 20);//шея
             ctx.fillRect(40, 120, 70, 70);//туловище
             ctx.fillRect(20, 120, 20, 10);//правая рука
@@ -37,7 +37,7 @@
             //ctx.moveTo(250, 0);
             //ctx.lineTo(200, 50);
             //ctx.stroke();
-            function drawLine(a, b, c, d) {
+            function drawLine(a, b, c, d) {  
                 ctx.beginPath();//метод определяет начало рисования нового пути
                 ctx.moveTo(a, b);//два аргумента-x,y-координаты, из этой точки начинается рисование
                 ctx.lineTo(c, d); //в эту точку приходит "перо"
@@ -54,15 +54,88 @@
             drawLine(225, 130, 210, 150);//правая нога
             drawLine(225, 130, 240, 150);//левая нога
 
-            ctx.fillStyle = "blue";
+            ctx.fillStyle = "Blue";
             ctx.beginPath();
-            ctx.moveTo(210, 300);
+            ctx.moveTo(210, 300);//Домик
             ctx.lineTo(210, 260);
             ctx.lineTo(240, 230);
             ctx.lineTo(270, 260);
             ctx.lineTo(270, 300);
             ctx.lineTo(210, 300);
-            ctx.fill();
+            ctx.fill();// Заполнили домик цветом (вместо stroke)
+
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Green";
+            ctx.beginPath();
+            ctx.arc(300, 50, 20, 0, Math.PI / 2, false);// x,y-координаты центра окружности, радиус, неачальный угол, конечный угол, false - рисовать дугу по часовой стрелке (если против - тогда true)
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(350, 50, 20, 0, Math.PI, true);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(400, 50, 20, 0, Math.PI * 2, false);
+            ctx.stroke();
+
+            var circle = function(x, y, radius) { //Функция для рисования окружностей
+                ctx.beginPath();// Создаем путь
+                ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+                ctx.stroke();
+            };
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Red";
+            circle(350, 150, 10);
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Orange";
+            circle(350, 150, 20);
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Yellow";
+            circle(350, 150, 30);
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Green";
+            circle(350, 150, 40);
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Blue";
+            circle(350, 150, 50);
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Purple";
+            circle(350, 150, 60);
+
+             var circle = function(x, y, radius, fillCircle) { //Функция для рисования окружностей
+                ctx.beginPath();// Создаем путь
+                ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+                if (fillCircle) {
+                    ctx.fillStyle = "Black";
+                    ctx.fill();
+                }
+                else {
+                    ctx.stroke();
+                }
+            };
+          
+            ctx.lineWidth = 4; // голова снеговика
+            ctx.strokeStyle = "Black";
+            circle(500, 50, 30, false);
+            ctx.lineWidth = 4; // туловище снеговика
+            ctx.strokeStyle = "Black";
+            circle(500, 120, 40, false);
+            ctx.lineWidth = 4; // правый глаз
+            ctx.strokeStyle = "Black";
+            circle(490, 45, 5, true);
+            ctx.lineWidth = 4; // левый глаз
+            ctx.strokeStyle = "Black";
+            circle(510, 45, 5, true);
+            ctx.lineWidth = 4; // yjc
+            ctx.strokeStyle = "Black";
+            circle(500,55, 5, true);
+            ctx.lineWidth = 4; // пуговицы
+            ctx.strokeStyle = "Black";
+            circle(500,100, 5, true);
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Black";
+            circle(500,120, 5, true);
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Black";
+            circle(500,140, 5, true);
         </script>
     </body>
 </html>
