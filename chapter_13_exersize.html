@@ -9,6 +9,31 @@
         <script>
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
+        var drawShowman = function(x,y){
+            var circle = function(x, y, radius, fillCircle, color) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+            ctx.stroke();
+            if (fillCircle) {
+                ctx.fillStyle = color;
+                ctx.fill();
+            }
+            else {
+                ctx.strokeStyle = color;
+                ctx.stroke();
+            }
+            }
+            ctx.lineWidth = 4;
+            circle(50, 50, 30, false, "Black");
+            circle(50, 120, 40, false, "Black");
+            circle(40, 45, 5, true, "Black");
+            circle(60, 45, 5, true, "Black");
+            circle(50,55, 5, true, "Orange");
+            circle(50,100, 5, true, "Black");
+            circle(50,120, 5, true, "Black");
+            circle(50,140, 5, true, "Black");
+        } 
+        drawShowman();
         </script>
     </body>
 </html>
