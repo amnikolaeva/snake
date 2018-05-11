@@ -10,29 +10,45 @@
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
         var drawShowman = function(x,y){
+            var headX = x;
+            var headY = y;
+            var bodyX = x;
+            var bodyY = y + 70;
+            var rightEyeX = x - 10;
+            var rightEyeY = y - 5;
+            var leftEyeX = x + 10;
+            var leftEyeY = y - 5;
+            var noseX = x;
+            var noseY = y + 5;
+            var button1X = x;
+            var button1Y = y + 50;
+            var button2X = x;
+            var button2Y = y + 70;
+            var button3X = x;
+            var button3Y = y + 90;
             var circle = function(x, y, radius, fillCircle, color) {
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-            if (fillCircle) {
-                ctx.fillStyle = color;
-                ctx.fill();
-            }
-            else {
-                ctx.strokeStyle = color;
-                ctx.stroke();
-            }
+                if (fillCircle) {
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                }
+                else {
+                    ctx.strokeStyle = color;
+                    ctx.stroke();
+                }
             }
             ctx.lineWidth = 4;
-            circle(50, 50, 30, false, "Black");
-            circle(50, 120, 40, false, "Black");
-            circle(40, 45, 5, true, "Black");
-            circle(60, 45, 5, true, "Black");
-            circle(50,55, 5, true, "Orange");
-            circle(50,100, 5, true, "Black");
-            circle(50,120, 5, true, "Black");
-            circle(50,140, 5, true, "Black");
+            circle(headX, headY, 30, false, "Black");
+            circle(bodyX, bodyY, 40, false, "Black");
+            circle(rightEyeX, rightEyeY, 5, true, "Black");
+            circle(leftEyeX, leftEyeY, 5, true, "Black");
+            circle(noseX, noseY, 5, true, "Orange");
+            circle(button1X,button1Y, 5, true, "Black");
+            circle(button2X,button2Y, 5, true, "Black");
+            circle(button3X,button3Y, 5, true, "Black");
         } 
-        drawShowman();
+        drawShowman(100, 100);
         </script>
     </body>
 </html>
