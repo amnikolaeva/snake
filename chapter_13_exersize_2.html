@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exersize 2</title>
+    </head>
+    <body>
+        <canvas id="canvas" width="1000" height="1000"></canvas>
+        <script>
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var points = [[50, 50], [50, 100],[100, 100], [100, 50], [50, 50]];
+            function drawLine(points) {  
+                ctx.beginPath();
+                for (var i = 0, j = 0; i < points.length, j < points.length; i++, j++) {
+                    x = points[i][0]
+                    y = points[j][1];
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x, y);
+                }
+                return ctx.stroke();
+            }
+            drawLine(points);
+        </script>
+    </body>
+</html>
