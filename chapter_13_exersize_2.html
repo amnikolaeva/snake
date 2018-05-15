@@ -9,18 +9,21 @@
         <script>
             var canvas = document.getElementById("canvas");
             var ctx = canvas.getContext("2d");
-            var points = [[50, 50], [50, 100],[100, 100], [100, 50], [50, 50]];
+            var points = [[50, 50], [50, 100], [100, 100], [100, 50], [50, 50]];
+            var mysteryPoints = [[50, 50], [50, 100], [25, 120], [100, 50], [70, 90], [100, 90], [70, 120]];
             function drawLine(points) {  
                 ctx.beginPath();
-                for (var i = 0, j = 0; i < points.length, j < points.length; i++, j++) {
-                    x = points[i][0]
-                    y = points[j][1];
-                    ctx.moveTo(x, y);
+                for (var i = 1, j = 1; i < points.length, j < points.length; i++, j++) {
+                    ctx.moveTo(points[0][0], points[0][1]);
+                    var x = points[i][0]
+                    var y = points[i][j];
                     ctx.lineTo(x, y);
+                    //ctx.lineTo(points[2][0], points[2][1]);
                 }
                 return ctx.stroke();
             }
             drawLine(points);
+            drawLine(mysteryPoints);
         </script>
     </body>
 </html>
