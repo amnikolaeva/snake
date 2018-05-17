@@ -37,7 +37,7 @@
             //ctx.moveTo(250, 0);
             //ctx.lineTo(200, 50);
             //ctx.stroke();
-            function drawLine(a, b, c, d) {  
+            function drawLine(a, b, c, d) {  // рисование линии
                 ctx.beginPath();//метод определяет начало рисования нового пути
                 ctx.moveTo(a, b);//два аргумента-x,y-координаты, из этой точки начинается рисование
                 ctx.lineTo(c, d); //в эту точку приходит "перо"
@@ -64,7 +64,7 @@
             ctx.lineTo(210, 300);
             ctx.fill();// Заполнили домик цветом (вместо stroke)
 
-            ctx.lineWidth = 4;
+            ctx.lineWidth = 4; // рисование окружности
             ctx.strokeStyle = "Green";
             ctx.beginPath();
             ctx.arc(300, 50, 20, 0, Math.PI / 2, false);// x,y-координаты центра окружности, радиус, неачальный угол, конечный угол, false - рисовать дугу по часовой стрелке (если против - тогда true)

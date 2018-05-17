@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Exersize 4</title>
+    </head>
+    <body>
+        <h1>Виселица!</h1>
+
+        <script>
+        // Создаем массив со словами
+        var words = [
+            "макака",
+            "баран",
+            "лягушка"
+        ];
+
+        // Выбираем случайное слово
+        var word = words[Math.floor(Math.random() * words.length)];
+
+        //Создаем итоговый массив
+        var answerArray = [];
+        for (var i = 0; i < word.length; i++) {
+            answerArray[i] = "_";
+        }
+        var remainingLetters = word.length;// пер. оставшиеся буквы
+        var x = true;
+        var attempts = 0; // пер. попытки
+        var errorLetter = 0;
+
+        //Игровой цикл
+        while (remainingLetters > 0 && attempts < 10) {
+            attempts++;
+            // Показываем состояние игры
+            alert(answerArray.join(" "));
+            
+            //Запрашиваем вариант ответа
+            var guess = prompt("Угадайте букву или нажмите Отмена для выхода из игры.");
+            if (guess === null) {
+                //Выходим из игрового цикла
+                break;
+            } else if (guess.length !==1) {
+                alert("Пожалуйста, введите одиночную букву.");
+            } else {
+                // Обновляем состояние игры
+                guess = guess.toLowerCase();
+                for (var j = 0; j < word.length; j++) {
+                    if (word[j] === guess) {
+                        if(answerArray[j] == "_") {
+                            answerArray[j] = guess;
+                            remainingLetters--;
+                        }
+                    }
+                    else {
+                        errorLetter++;
+                        if (errorLetter === 2) {
+                            debugger;
+                            alert("Игра окончена");
+                        }
+                    }
+                }
+            }
+
+            //Конец игрового цикла
+        }
+
+        if(remainingLetters == 0) {
+             //Отображаем ответ и поздравляем игрока
+            alert(answerArray.join(" "));
+            alert("Отлично! Было загадано слово " + word);
+        }
+        else {
+            alert("Очень жаль, что вы не угадали! Было загадано слово " + word);
+        }
+       
+        </script>
+    </body>
+</html>
