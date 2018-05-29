@@ -45,9 +45,11 @@
                 circle(x - 2, y - 1, 2, false);
                 circle(x + 2, y - 1, 2, false);
             }
-
+            
+            drawBee(300, 300);
+            
             var update = function(coordinate) {
-                var offset = Math.random() *4 - 2;
+                var offset = Math.random() * 4 - 2;
                 coordinate += offset;
                 if (coordinate > 200) {
                     coordinate = 200;
@@ -58,15 +60,7 @@
                  return coordinate;
             }
 
-            var x = 300;
-            var y = 300;
-            setInterval(function() {
-                ctx.clearRect(200, 200, 200, 200);
-                drawBee(x, y);
-                x = update(x);
-                y = update(y);
-                ctx.strokeRect(200, 200, 200, 200);
-            }, 30)
+
         </script>
     </body>
 </html>
