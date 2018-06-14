@@ -14,16 +14,15 @@
                 this.y = 100;
                 this.xSpeed = Math.random() * 10 - 5;
                 this.ySpeed = Math.random() * 10 - 5;
-                this.color = ;
+                this.colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"];
+                this.color = this.colors[Math.floor(Math.random() * this.colors.length)];   
             };
-            var colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"];
-            //var ball = new Ball();
+            
             var arrayOfBalls = [];
             for (var i = 0; i < 10; i++) {
                 arrayOfBalls[i] = new Ball();
             }
-            var width = canvas.width;
-            var height = canvas.height;
+
             /**
              * Отрисовка мяча
              * @param {number} x x-координата
@@ -31,10 +30,11 @@
              * @param {number} radius радиус круга
              * @param {boolean} fillCircle заполненный или пустой круг
             */
-            var circle = function(x, y, radius, fillCircle) {
+            var circle = function(x, y, radius, fillCircle, color) {
                 ctx.beginPath();
                 ctx.arc(x, y, radius, 0, Math.PI * 2, false);
                 if (fillCircle) {
+                    ctx.fillStyle = color;
                     ctx.fill();
                 }
                 else {
@@ -43,7 +43,7 @@
             };
 
             Ball.prototype.draw = function() {
-                circle(this.x, this.y, 3, true);
+                circle(this.x, this.y, 3, true, this.color);
             };
 
             Ball.prototype.move = function() {
@@ -67,9 +67,6 @@
                     arrayOfBalls[i].move();
                     arrayOfBalls[i].checkCollision();
                 }
-                //ball.draw();
-                //ball.move();
-                //ball.checkCollision();
                 ctx.strokeRect(0, 0, canvas.width, canvas.height);
             }, 30);
         </script>
