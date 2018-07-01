@@ -30,7 +30,7 @@
             this.y = height / 2;
             this.xSpeed = 5;
             this.ySpeed = 0;
-            this.speed = 5;
+            this.speed = 9;
         };
 
         Ball.prototype.move = function() {
@@ -75,7 +75,7 @@
                 this.xSpeed = 0;
                 this.ySpeed = 0;
             }
-        }
+        };
 
         var ball = new Ball();
         var keyActions = {
@@ -95,20 +95,24 @@
             103: 7,
             104: 8,
             105: 9
-        }
+        };
 
         $("body").keydown(function(event) {
             var direction = keyActions[event.keyCode];
             var speed = speeds[event.keyCode];
-            ball.setDirection(direction);
-            ball.speed = speed;
+            if (typeof speed != 'undefined') {
+                ball.speed = speed;
+            }
+            if (typeof direction != 'undefined') {
+                ball.setDirection(direction);
+            }
         });
 
         setInterval(function() {
-            ctx.clearRect(0, 0, width,height);
+            ctx.clearRect(0, 0, width, height);
             ball.draw();
             ball.move();
-            ctx.strokeRect(0, 0, width,height);
+            ctx.strokeRect(0, 0, width, height);
         }, 30);
         
         </script>
