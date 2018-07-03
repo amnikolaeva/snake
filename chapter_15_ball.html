@@ -79,49 +79,30 @@
         };
 
         Ball.prototype.setSpeed = function(speed) {
-            if (direction === "up") {
-                this.speed = speed;
-                this.xSpeed = 0;
-                if (this.ySpeed < 0) {
-                    this.ySpeed = - this.speed;
-                }
-                else {
-                    this.ySpeed = this.speed;
-                }
-                direction = "up";
+            this.speed = speed;
+            if (direction === "up" || direction === "down") {                
+                changeSpeedByY(this);
+            } 
+            else if (direction === "left" || direction === "right") {
+                changeSpeedByX(this);
             }
-            else if (direction === "down") {
-                this.speed = speed;
-                this.xSpeed = 0;
-                if (this.ySpeed < 0) {
-                    this.ySpeed = - this.speed;
+            
+            function changeSpeedByY(context) {
+                context.xSpeed = 0;
+                if (context.ySpeed < 0) {
+                    context.ySpeed = - context.speed;
+                } else {
+                    context.ySpeed = context.speed;
                 }
-                else {
-                    this.ySpeed = this.speed;
-                }
-                direction = "down";
             }
-            else if (direction === "left") {
-                this.speed = speed;
-                if (this.xSpeed < 0) {
-                    this.xSpeed = - this.speed;
+
+            function changeSpeedByX(context) {
+                if (context.xSpeed < 0) {
+                    context.xSpeed = - context.speed;
+                } else {
+                    context.xSpeed = context.speed;
                 }
-                else {
-                    this.xSpeed = this.speed;
-                }
-                this.ySpeed = 0;
-                direction = "left";
-            }
-            else if (direction === "right") {
-                this.speed = speed;
-                if (this.xSpeed < 0) {
-                    this.xSpeed = - this.speed;
-                }
-                else {
-                    this.xSpeed = this.speed;
-                }
-                this.ySpeed = 0;
-                direction = "right";
+                context.ySpeed = 0;
             }
         };
 
