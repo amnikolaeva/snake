@@ -82,23 +82,44 @@
             if (direction === "up") {
                 this.speed = speed;
                 this.xSpeed = 0;
+                if (this.ySpeed < 0) {
+                    this.ySpeed = - this.speed;
+                }
+                else {
+                    this.ySpeed = this.speed;
+                }
                 direction = "up";
             }
             else if (direction === "down") {
                 this.speed = speed;
                 this.xSpeed = 0;
-                this.ySpeed = this.speed;
+                if (this.ySpeed < 0) {
+                    this.ySpeed = - this.speed;
+                }
+                else {
+                    this.ySpeed = this.speed;
+                }
                 direction = "down";
             }
             else if (direction === "left") {
                 this.speed = speed;
-                this.xSpeed = - this.speed;
+                if (this.xSpeed < 0) {
+                    this.xSpeed = - this.speed;
+                }
+                else {
+                    this.xSpeed = this.speed;
+                }
                 this.ySpeed = 0;
                 direction = "left";
             }
             else if (direction === "right") {
                 this.speed = speed;
-                this.xSpeed = this.speed;
+                if (this.xSpeed < 0) {
+                    this.xSpeed = - this.speed;
+                }
+                else {
+                    this.xSpeed = this.speed;
+                }
                 this.ySpeed = 0;
                 direction = "right";
             }
