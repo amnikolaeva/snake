@@ -12,6 +12,7 @@
         var ctx = canvas.getContext("2d");
         var width = canvas.width;
         var height = canvas.height;
+        var direction = "right";
 
         var circle = function(x, y, radius, fillCircle, color) {
             ctx.beginPath();
@@ -77,6 +78,32 @@
             }
         };
 
+        Ball.prototype.setSpeed = function(speed) {
+            if (direction === "up") {
+                this.speed = speed;
+                this.xSpeed = 0;
+                direction = "up";
+            }
+            else if (direction === "down") {
+                this.speed = speed;
+                this.xSpeed = 0;
+                this.ySpeed = this.speed;
+                direction = "down";
+            }
+            else if (direction === "left") {
+                this.speed = speed;
+                this.xSpeed = - this.speed;
+                this.ySpeed = 0;
+                direction = "left";
+            }
+            else if (direction === "right") {
+                this.speed = speed;
+                this.xSpeed = this.speed;
+                this.ySpeed = 0;
+                direction = "right";
+            }
+        };
+
         var ball = new Ball();
         var keyActions = {
             32: "stop",
@@ -101,10 +128,11 @@
             var direction = keyActions[event.keyCode];
             var speed = speeds[event.keyCode];
             if (typeof speed != 'undefined') {
-                ball.speed = speed;
+                ball.setSpeed(speed);
             }
             if (typeof direction != 'undefined') {
                 ball.setDirection(direction);
+                window.direction = direction;
             }
         });
 
