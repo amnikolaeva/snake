@@ -100,6 +100,19 @@
             }
         };
 
+        Ball.prototype.setDecelerationAcceleration = function(decelerationAcceleration) {
+            if (decelerationAcceleration === "deceleration") {
+                while (this.speed > 1) {
+                    this.speed--;
+                }
+            }
+            if (decelerationAcceleration === "acceleration") {
+                while (this.speed < 9) {
+                    this.speed++;
+                }
+            }
+        }
+
         var ball = new Ball();
         var keyActions = {
             32: "stop",
@@ -120,15 +133,24 @@
             105: 9
         };
 
+        var keyDecelerationAcceleration = {
+            90: "deceleration",
+            88: "acceleration"
+        }
+
         $("body").keydown(function(event) {
             var direction = keyActions[event.keyCode];
             var speed = speeds[event.keyCode];
+            var decelerationAcceleration = keyDecelerationAcceleration[event.keyCode];
             if (typeof speed != 'undefined') {
                 ball.setSpeed(speed);
             }
             if (typeof direction != 'undefined') {
                 ball.setDirection(direction);
                 window.direction = direction;
+            }
+            if (typeof decelerationAcceleration != 'undefined') {
+                ball.setDecelerationAcceleration(decelerationAcceleration);
             }
         });
 
