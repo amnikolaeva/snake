@@ -80,24 +80,6 @@
             else if (direction === "left" || direction === "right") {
                 changeSpeedByX(this);
             }
-            
-            function changeSpeedByY(context) {
-                context.xSpeed = 0;
-                if (context.ySpeed < 0) {
-                    context.ySpeed = - context.speed;
-                } else {
-                    context.ySpeed = context.speed;
-                }
-            }
-
-            function changeSpeedByX(context) {
-                if (context.xSpeed < 0) {
-                    context.xSpeed = - context.speed;
-                } else {
-                    context.xSpeed = context.speed;
-                }
-                context.ySpeed = 0;
-            }
         };
 
         Ball.prototype.setSpeedDownSpeedUp = function(speedDownSpeedUp) {
@@ -107,35 +89,19 @@
                 }  
                 else {this.speed--;}
                 if (direction === "up" || direction === "down") {
-                    if (this.ySpeed < 0) {
-                        this.ySpeed = -this.speed;
-                    } else {
-                        this.ySpeed = this.speed;
-                    }
+                    changeSpeedByY(this);
                 }
                 if (direction === "left" || direction === "right") {
-                    if (this.xSpeed < 0) {
-                        this.xSpeed = -this.speed;
-                    } else {
-                        this.xSpeed = this.speed;
-                    }
+                    changeSpeedByX(this);
                 }             
             }
             if (speedDownSpeedUp === "speed up") {
                 this.speed++;
                 if (direction === "up" || direction === "down") {                
-                    if (this.ySpeed < 0) {
-                        this.ySpeed = - this.speed;
-                    }  else {
-                        this.ySpeed = this.speed;
-                    }       
+                    changeSpeedByY(this);      
                 } 
                 if (direction === "left" || direction === "right") {                
-                    if (this.xSpeed < 0) {
-                        this.xSpeed = - this.speed;
-                    }  else {
-                        this.xSpeed = this.speed;
-                    } 
+                    changeSpeedByX(this);
                 } 
             }
         }
@@ -163,6 +129,24 @@
         var keySpeedDownSpeedUp = {
             90: "speed down",
             88: "speed up"
+        };
+
+        function changeSpeedByY(context) {
+            context.xSpeed = 0;
+            if (context.ySpeed < 0) {
+                context.ySpeed = - context.speed;
+            } else {
+                context.ySpeed = context.speed;
+            }
+        }
+
+        function changeSpeedByX(context) {
+            if (context.xSpeed < 0) {
+                context.xSpeed = - context.speed;
+            } else {
+                context.xSpeed = context.speed;
+            }
+            context.ySpeed = 0;
         }
 
         $("body").keydown(function(event) {
