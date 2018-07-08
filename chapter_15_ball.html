@@ -96,7 +96,10 @@
                 }             
             }
             if (speedDownSpeedUp === "speed up") {
-                this.speed++;
+                if (this.speed === 200) {
+                    this.speed = 200;
+                }  
+                else {this.speed++;}
                 if (direction === "up" || direction === "down") {                
                     changeSpeedByY(this);      
                 } 
@@ -131,6 +134,11 @@
             88: "speed up"
         };
 
+        var keyReduceIncrease = {
+            67: "reduce",
+            86: "increase"
+        };
+
         function changeSpeedByY(context) {
             context.xSpeed = 0;
             if (context.ySpeed < 0) {
@@ -138,7 +146,7 @@
             } else {
                 context.ySpeed = context.speed;
             }
-        }
+        };
 
         function changeSpeedByX(context) {
             if (context.xSpeed < 0) {
@@ -147,7 +155,7 @@
                 context.xSpeed = context.speed;
             }
             context.ySpeed = 0;
-        }
+        };
 
         $("body").keydown(function(event) {
             var direction = keyActions[event.keyCode];
