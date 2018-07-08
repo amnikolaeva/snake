@@ -31,7 +31,7 @@
             this.y = height / 2;
             this.xSpeed = 5;
             this.ySpeed = 0;
-            this.speed = 9;
+            this.speed = 5;
         };
 
         Ball.prototype.move = function() {
@@ -100,16 +100,43 @@
             }
         };
 
-        Ball.prototype.setDecelerationAcceleration = function(decelerationAcceleration) {
-            if (decelerationAcceleration === "deceleration") {
-                while (this.speed > 1) {
-                    this.speed--;
+        Ball.prototype.setSpeedDownSpeedUp = function(speedDownSpeedUp) {
+            if (speedDownSpeedUp === "speed down") {
+                if (this.speed === 1) {
+                    this.speed = 1;
+                }  
+                else {this.speed--;}
+                if (direction === "up" || direction === "down") {
+                    if (this.ySpeed < 0) {
+                        this.ySpeed = -this.speed;
+                    } else {
+                        this.ySpeed = this.speed;
+                    }
                 }
+                if (direction === "left" || direction === "right") {
+                    if (this.xSpeed < 0) {
+                        this.xSpeed = -this.speed;
+                    } else {
+                        this.xSpeed = this.speed;
+                    }
+                }             
             }
-            if (decelerationAcceleration === "acceleration") {
-                while (this.speed < 9) {
-                    this.speed++;
-                }
+            if (speedDownSpeedUp === "speed up") {
+                this.speed++;
+                if (direction === "up" || direction === "down") {                
+                    if (this.ySpeed < 0) {
+                        this.ySpeed = - this.speed;
+                    }  else {
+                        this.ySpeed = this.speed;
+                    }       
+                } 
+                if (direction === "left" || direction === "right") {                
+                    if (this.xSpeed < 0) {
+                        this.xSpeed = - this.speed;
+                    }  else {
+                        this.xSpeed = this.speed;
+                    } 
+                } 
             }
         }
 
@@ -133,15 +160,15 @@
             105: 9
         };
 
-        var keyDecelerationAcceleration = {
-            90: "deceleration",
-            88: "acceleration"
+        var keySpeedDownSpeedUp = {
+            90: "speed down",
+            88: "speed up"
         }
 
         $("body").keydown(function(event) {
             var direction = keyActions[event.keyCode];
             var speed = speeds[event.keyCode];
-            var decelerationAcceleration = keyDecelerationAcceleration[event.keyCode];
+            var speedDownSpeedUp = keySpeedDownSpeedUp[event.keyCode];
             if (typeof speed != 'undefined') {
                 ball.setSpeed(speed);
             }
@@ -149,8 +176,8 @@
                 ball.setDirection(direction);
                 window.direction = direction;
             }
-            if (typeof decelerationAcceleration != 'undefined') {
-                ball.setDecelerationAcceleration(decelerationAcceleration);
+            if (typeof speedDownSpeedUp != 'undefined') {
+                ball.setSpeedDownSpeedUp(speedDownSpeedUp);
             }
         });
 
