@@ -13,6 +13,7 @@
         var width = canvas.width;
         var height = canvas.height;
         var direction = "right";
+        var reduceIncrease = "radius";
 
         var circle = function(x, y, radius, fillCircle, color) {
             ctx.beginPath();
@@ -29,6 +30,7 @@
         var Ball = function() {
             this.x = width / 2;
             this.y = height / 2;
+            this.radius = 10;
             this.xSpeed = 5;
             this.ySpeed = 0;
             this.speed = 5;
@@ -45,8 +47,24 @@
             }
         };
 
-        Ball.prototype.draw = function() {
-            circle(this.x, this.y, 10, true, "red");
+        Ball.prototype.draw = function(reduceIncrease) {
+            circle(this.x, this.y, this.radius, true, "red");
+            if (reduceIncrease === "reduce") {
+                if (this.radius === 1) {
+                    circle(this.x, this.y, 1, true, "red");
+                }
+                else {
+                    circle(this.x, this.y, this.radius--, true, "red");
+                }
+            }
+            else if (reduceIncrease === "increase") {
+                if (this.radius === 200) {
+                    circle(this.x, this.y, 200, true, "red");
+                }
+                else {
+                    circle(this.x, this.y, this.radius++, true, "red");
+                }
+            }
         };
 
         Ball.prototype.setDirection = function(direction) {
@@ -161,6 +179,7 @@
             var direction = keyActions[event.keyCode];
             var speed = speeds[event.keyCode];
             var speedDownSpeedUp = keySpeedDownSpeedUp[event.keyCode];
+            var reduceIncrease = keyReduceIncrease[event.keyCode];
             if (typeof speed != 'undefined') {
                 ball.setSpeed(speed);
             }
@@ -170,6 +189,10 @@
             }
             if (typeof speedDownSpeedUp != 'undefined') {
                 ball.setSpeedDownSpeedUp(speedDownSpeedUp);
+            }
+            if (typeof reduceIncrease != 'undefined') {
+                ball.draw(reduceIncrease);
+                window.reduceIncrease = reduceIncrease;
             }
         });
 
