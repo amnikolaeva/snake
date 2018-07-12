@@ -8,6 +8,9 @@ var numOfSecretLetters = word.length;
 var attempts = 0;
 var numOfFailLetters = 0;
 
+var width = canvas.width;
+var height = canvas.height;
+
 startGame();
 
 /**
@@ -64,6 +67,7 @@ function startGame() {
                         if (answerArray[j] == "_") {
                             answerArray[j] = guess;
                             numOfSecretLetters--;
+                            writtenWord();
                         }
                     }
                 }
@@ -71,6 +75,14 @@ function startGame() {
         }
     }
 }
+
+function writtenWord() {
+    ctx.font = "60px Courier";
+    ctx.fillStyle = "Black";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(answerArray, width / 2, height / 2);
+};
 
 function finishGame() {
     if (numOfSecretLetters == 0) {
