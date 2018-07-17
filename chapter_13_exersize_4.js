@@ -65,6 +65,7 @@ function startGame() {
                 var failLetters = guess;
                 arrayOfFailLetters.push(failLetters);
                 drawMan(numOfFailLetters);
+                writtenFailLetters();
             } else {
                 for (var j = 0; j < word.length; j++) {
                     if (word[j] === guess) {
@@ -72,7 +73,6 @@ function startGame() {
                             answerArray[j] = guess;
                             numOfSecretLetters--;
                             writtenWord();
-                            writtenFailLetters();
                         }
                     }
                 }
@@ -85,8 +85,9 @@ function writtenWord() {
     ctx.font = "60px Courier";
     ctx.fillStyle = "Black";
     ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(answerArray, width / 2, height / 2);
+    ctx.textBaseline = "middle"; 
+    let word = answerArray.join(" ");
+    ctx.fillText(word, width / 2, height / 2);
 };
 
 function writtenFailLetters() {
@@ -94,7 +95,7 @@ function writtenFailLetters() {
     ctx.fillStyle = "Black";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(arrayOfFailLetters, 400, 400);
+    ctx.fillText(arrayOfFailLetters.join(" "), 400, 400);
 };
 
 function finishGame() {
