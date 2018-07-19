@@ -18,7 +18,7 @@
         var score = 0;
 
         var drawBorder = function() {
-            ctx.font = "20px Courier";
+            ctx.fillStyle = "Gray";
             ctx.fillRect(0, 0, width, blockSize);
             ctx.fillRect(0, height - blockSize, width, blockSize);
             ctx.fillRect(0, 0, blockSize, height);
@@ -36,7 +36,7 @@
         drawScore();
 
         var gameOver = function() {
-            //clearInterval(intervalId);
+            clearInterval(intervalId);
             ctx.font = "60px Courier";
             ctx.fillStyle = "Black";
             ctx.textAlign = "center";
@@ -68,6 +68,10 @@
             ];
             this.direction = "right";
             this.nextDirection = "right";
+        };
+
+        var Apple = function() {
+            this.position = new Block(10, 10);
         };
 
         Block.prototype.drawSquare = function(color) {
@@ -112,12 +116,12 @@
                 return;
             }
             this.segments.unshift(newHead);
-            //if (newHead.equal(apple.position)) {
-            //    score++;
-            //    apple.move();
-            //} else {
+            if (newHead.equal(apple.position)) {
+                score++;
+                apple.move();
+            } else {
                 this.segments.pop();
-            //}
+            }
         };
 
         Snake.prototype.checkCollision = function(head) {
@@ -135,14 +139,54 @@
             return wallCollision || selfCollision;
         };
 
-        //var intervalId = setInterval(function() {
-        //    ctx.clearRect(0, 0, width, height);
-        //    drawScore();
-        //    snake.move();
-        //    snake.draw();
-        //    apple.draw();
-        //    drawBorder();
-        //}, 100);
+        Snake.prototype.setDirection = function(newDirection) {
+            if (this.direction === "up" && newDirection === "down") {
+                return;
+            } else if (this.direction === "right" && newDirection === "left") {
+                return;
+            } else if (this.direction === "down" && newDirection === "up") {
+                return;
+            } else if (this.direction === "left" && newDirection === "right") {
+                return;
+            }
+            this.nextDirection = newDirection;
+        };
+
+        Apple.prototype.draw = function() {
+            this.position.drawCircle("LimeGreen");
+        };
+
+        Apple.prototype.move = function() {
+            var randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
+            var randomRow = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
+            this.position = new Block(randomCol, randomRow);
+        };
+
+        var snake = new Snake();
+        var apple = new Apple();
+
+        var intervalId = setInterval(function() {
+            ctx.clearRect(0, 0, width, height);
+            drawScore();
+            snake.move();
+            snake.draw();
+            apple.draw();
+            drawBorder();
+        }, 300);
+
+        var direction = {
+            37: "left",
+            38: "up",
+            39: "right",
+            40: "down"
+        };
+
+        $("body").keydown(function(event) {
+            var newDirection = direction[event.keyCode];
+            if (newDirection !== undefined) {
+                snake.setDirection(newDirection);
+            }
+        });
         </script>
     </body>
 </html>
