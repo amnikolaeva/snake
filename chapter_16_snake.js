@@ -79,10 +79,14 @@
         };
 
         Snake.prototype.draw = function() {
-            for (var i = 0, j = i + 1; i < this.segments.length, j < this.segments.length; i++, j++) {
-                this.segments[0].drawSquare("Green");
-                this.segments[i].drawSquare("Blue");
-                this.segments[j].drawSquare("Yellow");
+            for (var i = 0; i < this.segments.length; i++) {
+                if (i == 0) {
+                    this.segments[i].drawSquare("Green");
+                } else if (i % 2 == 1) {
+                    this.segments[i].drawSquare("Blue");
+                } else {
+                    this.segments[i].drawSquare("Yellow");
+                }
             }
         };
 
