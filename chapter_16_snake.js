@@ -26,7 +26,8 @@
         drawScore();
 
         var gameOver = function() {
-            clearInterval(intervalId);
+            //clearInterval(intervalId);
+            clearTimeout(timerId);
             ctx.font = "60px Courier";
             ctx.fillStyle = "Black";
             ctx.textAlign = "center";
@@ -110,6 +111,9 @@
             this.segments.unshift(newHead);
             if (newHead.equal(apple.position)) {
                 score++;
+                if (animationTime > 250) {
+                    animationTime = animationTime - 50;
+                }
                 apple.move();
             } else {
                 this.segments.pop();
@@ -161,14 +165,18 @@
         var snake = new Snake();
         var apple = new Apple();
 
-        var intervalId = setInterval(function() {
+        var animationTime = 500;
+        var gameLoop = function() {
             ctx.clearRect(0, 0, width, height);
             drawScore();
             snake.move();
             snake.draw();
             apple.draw();
             drawBorder();
-        }, 300);
+            window.timerId = setTimeout(gameLoop, animationTime);
+
+        };
+        gameLoop();
 
         var direction = {
             37: "left",
