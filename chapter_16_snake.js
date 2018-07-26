@@ -6,6 +6,7 @@
         var widthInBlocks = width / blockSize;
         var heightInBlocks = height / blockSize;
         var score = 0;
+        var isGameOver = false;
 
         var drawBorder = function() {
             ctx.fillStyle = "Gray";
@@ -26,7 +27,6 @@
         drawScore();
 
         var gameOver = function() {
-            //clearInterval(intervalId);
             clearTimeout(timerId);
             ctx.font = "60px Courier";
             ctx.fillStyle = "Black";
@@ -106,6 +106,7 @@
             }
             if (this.checkCollision(newHead)) {
                 gameOver();
+                isGameOver = true;
                 return;
             }
             this.segments.unshift(newHead);
@@ -174,7 +175,6 @@
             apple.draw();
             drawBorder();
             window.timerId = setTimeout(gameLoop, animationTime);
-
         };
         gameLoop();
 
@@ -187,7 +187,9 @@
 
         $("body").keydown(function(event) {
             var newDirection = direction[event.keyCode];
-            if (newDirection !== undefined) {
-                snake.setDirection(newDirection);
+            if (isGameOver === false) {
+                if (newDirection !== undefined) {
+                    snake.setDirection(newDirection);
+                }
             }
         });
