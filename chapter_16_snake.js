@@ -158,9 +158,19 @@
         };
 
         Apple.prototype.move = function() {
-            var randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
-            var randomRow = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
-            this.position = new Block(randomCol, randomRow);
+            do {
+                var randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
+                var randomRow = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
+                this.position = new Block(randomCol, randomRow);
+            } while(checkAppleCollision(this));
+
+            function checkAppleCollision(context) {
+                for (var i = 0; i < snake.segments.length; i++) {
+                    if (context.position.col == snake.segments[i].col || context.position.row == snake.segments[i].row) {
+                        return true;
+                    }
+                } return false;
+            }
         };
 
         var snake = new Snake();
